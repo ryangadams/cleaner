@@ -1,8 +1,8 @@
 from datetime import datetime
 
-from moduletracker import get_paths_to_clean
-from pathutils import extract_project_path, delete_node_modules
-from spacetracker import display_potential_saving
+from cleaner.moduletracker import get_paths_to_clean
+from cleaner.pathutils import extract_project_path, delete_node_modules
+from cleaner.spacetracker import display_potential_saving
 
 
 class bcolors:

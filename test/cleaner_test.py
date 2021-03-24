@@ -1,7 +1,7 @@
 import pathlib
 import time
 
-from pathutils import get_package_type_and_last_modified
+from cleaner.pathutils import get_package_type_and_last_modified
 
 
 def test_get_package_json_last_modified_with_package_lock(tmp_path: pathlib.Path):

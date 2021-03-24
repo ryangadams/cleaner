@@ -7,15 +7,15 @@ import typing as T
 
 from pathlib import Path
 
-from cli import display_package_stats, prompt_for_cleaning
-from moduletracker import save_path
-from pathutils import (
+from cleaner.cli import display_package_stats, prompt_for_cleaning
+from cleaner.moduletracker import save_path
+from cleaner.pathutils import (
     get_directory_size,
     path_as_string,
     get_package_type_and_last_modified,
     set_root_path,
 )
-from spacetracker import track_saving
+from cleaner.spacetracker import track_saving
 
 
 def process_modules(directory: bytes):
@@ -61,7 +61,7 @@ async def find_node_modules(path: Path):
 
     await asyncio.wait(
         [
-            dequeue(process.stdout, process_modules),
+            asyncio.create_task(dequeue(process.stdout, process_modules)),
         ]
     )
     await process.wait()
