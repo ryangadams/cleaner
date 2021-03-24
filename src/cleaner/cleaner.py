@@ -2,12 +2,10 @@
 # find directory size: du -sh _PATH_
 import asyncio
 import subprocess
-import sys
 import typing as T
-
 from pathlib import Path
 
-from cleaner.cli import display_package_stats, prompt_for_cleaning
+from cleaner.cli import display_package_stats
 from cleaner.moduletracker import save_path
 from cleaner.pathutils import (
     get_directory_size,
@@ -65,18 +63,3 @@ async def find_node_modules(path: Path):
         ]
     )
     await process.wait()
-
-
-def main(args=None):
-    if not args:
-        args = sys.argv
-    path = Path(args[1])
-    print(f"Cleaning {path.absolute()}")
-    loop = asyncio.get_event_loop()
-    rc = loop.run_until_complete(find_node_modules(path))
-    loop.close()
-    prompt_for_cleaning()
-
-
-if __name__ == "__main__":
-    main(sys.argv)
