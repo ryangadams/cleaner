@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 def get_directory_size(directory_path):
-    return subprocess.getoutput(f"du -sk {directory_path}").split()[0]
+    return subprocess.getoutput(rf"du -sk '{directory_path}'").split()[0]
 
 
 def path_as_string(directory: bytes):
