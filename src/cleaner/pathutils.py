@@ -46,7 +46,5 @@ def set_root_path(path):
 
 def extract_project_path(node_module_path):
     global root_path
-    project_path = node_module_path.replace(str(root_path.absolute()), "").replace(
-        "node_modules", ""
-    )
+    project_path = node_module_path.replace(str(root_path.absolute()), "")
     return project_path

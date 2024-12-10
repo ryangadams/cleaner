@@ -1,6 +1,6 @@
-# Node Modules Cleaner
+# Node Modules and Venv Cleaner
 
-Cleans up node_modules directories to reduce used disk space
+Cleans up node_modules and virtual environment directories to reduce used disk space
 
 Usage:
 
@@ -19,6 +19,6 @@ and run the command like
 
     cleaner PATH
 
-Searches path for node_modules directories under `PATH` and prompts you to delete them 
+Searches path for `node_modules` and `.venv` directories under `PATH` and prompts you to delete them 
 (assuming) you have a package.json and associated lock file to re-install.
 
