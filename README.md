@@ -11,6 +11,10 @@ You can also install this using pipx
 
     pipx install git+https://github.com/ryangadams/cleaner.git
 
+or install as an editable package for development in a venv
+
+    pip install -e ".[test]"
+
 and run the command like
 
     cleaner PATH
