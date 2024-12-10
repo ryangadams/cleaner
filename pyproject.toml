@@ -21,3 +21,6 @@ test = ["pytest"]
 
 [project.scripts]
 cleaner = "cleaner:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "cleaner.__version__"}
