@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[project]
+name = "cleaner"
+dynamic = ["version"]
+
+authors = [
+    {name="Ryan Adams", email="ryan.adams@instil.co"}
+]
+requires-python = ">= 3.11"
+description = "Clean up node_modules directories"
+
+dependencies = [
+    "humanize"
+]
+
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+cleaner = "cleaner:main"
