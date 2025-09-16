@@ -76,7 +76,7 @@ async def find_modules_venvs_and_caches(path: Path):
         "'.*/cdk.out$'",
         "-or",
         "-regex",
-        "'.*/cdk.out$'",
+        "'.*/.mypy_cache$'",
         "\\)",
         "-exec",
         "echo",

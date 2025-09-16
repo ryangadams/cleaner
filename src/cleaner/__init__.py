@@ -5,7 +5,7 @@ from pathlib import Path
 from cleaner.cleaner import find_modules_venvs_and_caches
 from cleaner.cli import prompt_for_cleaning
 
-__version__ = "2.1.0"
+__version__ = "2.1.1"
 
 def main(args=None):
     print(f"cleaner v{__version__}")
