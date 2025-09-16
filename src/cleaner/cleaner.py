@@ -34,7 +34,7 @@ async def dequeue(stream: asyncio.StreamReader, callback: T.Callable[[bytes], No
         callback(line)
 
 
-async def find_modules_and_venvs(path: Path):
+async def find_modules_venvs_and_caches(path: Path):
     set_root_path(path)
 
     node_command = [
@@ -66,6 +66,24 @@ async def find_modules_and_venvs(path: Path):
         "\\;"
     ]
 
+    caches_and_build_output_command = [
+        "find",
+        str(path.absolute()),
+        "-type",
+        "d",
+        "\\(",
+        "-regex",
+        "'.*/cdk.out$'",
+        "-or",
+        "-regex",
+        "'.*/cdk.out$'",
+        "\\)",
+        "-exec",
+        "echo",
+        "{}",
+        "\\;",
+    ]
+
     node_module_search = await asyncio.create_subprocess_shell(
         " ".join(node_command), stdout=subprocess.PIPE
     )
@@ -74,10 +92,15 @@ async def find_modules_and_venvs(path: Path):
         " ".join(venv_command), stdout=subprocess.PIPE
     )
 
+    cache_and_build_search = await asyncio.create_subprocess_shell(
+        " ".join(caches_and_build_output_command), stdout=subprocess.PIPE
+    )
+
     await asyncio.wait(
         [
             asyncio.create_task(dequeue(node_module_search.stdout, process_modules)),
             asyncio.create_task(dequeue(venv_search.stdout, process_modules)),
+            asyncio.create_task(dequeue(cache_and_build_search.stdout, process_modules)),
         ]
     )
     await node_module_search.wait()

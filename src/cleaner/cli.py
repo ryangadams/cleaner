@@ -47,6 +47,6 @@ def display_package_stats(node_module_path, package_type, size, last_modified):
 
 def prompt_for_cleaning():
     display_potential_saving()
-    do_it = input("Do you want to remove these node modules? (y/n): ")
+    do_it = input("Do you want to remove these node modules, python environments and caches? (y/n): ")
     if do_it == "y":
         delete_node_modules(get_paths_to_clean())

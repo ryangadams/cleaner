@@ -2,10 +2,10 @@ import asyncio
 import sys
 from pathlib import Path
 
-from cleaner.cleaner import find_modules_and_venvs
+from cleaner.cleaner import find_modules_venvs_and_caches
 from cleaner.cli import prompt_for_cleaning
 
-__version__ = "2.0.0"
+__version__ = "2.1.0"
 
 def main(args=None):
     print(f"cleaner v{__version__}")
@@ -14,7 +14,7 @@ def main(args=None):
     path = Path(args[1])
     print(f"Cleaning {path.absolute()}")
     loop = asyncio.get_event_loop()
-    rc = loop.run_until_complete(find_modules_and_venvs(path))
+    rc = loop.run_until_complete(find_modules_venvs_and_caches(path))
     loop.close()
     prompt_for_cleaning()
 
